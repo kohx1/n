@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para el amor de mi vida</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght=700&family=Poppins:wght=300;400;600&display=swap');
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: linear-gradient(135deg, #ffe5ec, #ffc2d1);
+            font-family: 'Poppins', sans-serif;
+            color: #4a4a4a;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 15px;
+            min-height: 100vh;
+        }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            padding: 25px 20px;
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+            margin: auto;
+            border: 2px solid #ff85a1;
+            position: relative;
+        }
+
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            color: #ff477e;
+            font-size: 2.5rem;
+            margin-bottom: 12px;
+        }
+
+        h2 {
+            font-family: 'Dancing Script', cursive;
+            color: #ff477e;
+            font-size: 1.8rem;
+            margin-top: 20px;
+        }
+
+        p {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        .heart {
+            color: #ff477e;
+            font-size: 45px;
+            animation: pulse 1.2s infinite;
+            margin: 10px 0;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin-top: 20px;
+            position: relative;
+            height: 70px;
+        }
+
+        button {
+            padding: 12px 28px;
+            font-size: 1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: 'Poppins', sans-serif;
+            touch-action: manipulation;
+        }
+
+        #btn-si {
+            background-color: #ff477e;
+            color: white;
+            box-shadow: 0 5px 15px rgba(255, 71, 126, 0.3);
+            z-index: 2;
+        }
+
+        #btn-no {
+            background-color: #ced4da;
+            color: #6c757d;
+            position: absolute;
+            transition: left 0.15s ease, top 0.15s ease;
+            z-index: 1;
+        }
+
+        /* Sección de Compromisos (Visible desde el inicio) */
+        .compromisos-section {
+            margin-top: 25px;
+            text-align: left;
+        }
+
+        .compromisos-list {
+            max-height: 250px;
+            overflow-y: auto;
+            background: #fff0f3;
+            padding: 15px;
+            border-radius: 15px;
+            border: 1px solid #ffb3c1;
+            margin-top: 12px;
+            font-size: 0.85rem;
+        }
+
+        .compromisos-list::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        .compromisos-list::-webkit-scrollbar-thumb {
+            background: #ff85a1;
+            border-radius: 10px;
+        }
+
+        ol {
+            padding-left: 18px;
+        }
+
+        li {
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+
+        .success-message {
+            display: none;
+            color: #ff477e;
+            font-weight: 600;
+            font-size: 1.2rem;
+            margin-top: 15px;
+            border: 2px dashed #ff477e;
+            padding: 10px;
+            border-radius: 10px;
+            background-color: #fff0f3;
+        }
+
+        @keyframes subir {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <div class="heart">❤️</div>
+        <h1>Para: Natalia Bautista</h1>
+        <p>
+            Natalia, aunque la distancia física nos separe por ahora, lo que siento por ti no conoce de kilómetros ni de pantallas. Te has convertido en mi persona favorita, en mi sonrisa diaria y en el motivo de mis pensamientos más bonitos.
+        </p>
+        
+        <p style="font-size: 1.2rem; color: #ff477e; font-weight: 600; margin-top: 10px;">¿Puedo ser tu novio?</p>
+
+        <!-- Botones de decisión -->
+        <div class="btn-container" id="actions">
+            <button id="btn-si" onclick="aceptarPropuesta()">¡SÍ!</button>
+            <button id="btn-no" onmouseover="moverBotonNo()" onclick="moverBotonNo()">NO</button>
+        </div>
+
+        <!-- Mensaje de éxito que aparece al dar SÍ -->
+        <div class="success-message" id="success-text">
+            ¡Me haces el más feliz del mundo! 💖 Te amo, Natalia.
+        </div>
+
+        <!-- 100 Compromisos siempre visibles -->
+        <div class="compromisos-section">
+            <h2>Nuestros 100 Compromisos</h2>
+            <p style="font-size: 0.8rem; color: #888; margin-bottom: 8px;">Mis promesas para cuidarte y amarte todos los días:</p>
+            <div class="compromisos-list">
+                <ol>
+                    <li>Darte los buenos días siempre que despierte.</li>
+                    <li>Darte las buenas noches antes de dormir.</li>
+                    <li>Recordarte lo hermosa que eres, incluso cuando tú no lo creas.</li>
+                    <li>Estar para ti en tus días difíciles.</li>
+                    <li>Escuchar tus audios largos con total atención.</li>
+                    <li>Ver películas o series "juntos" a la distancia.</li>
+                    <li>Hacer videollamadas para verte sonreír.</li>
+                    <li>Dormirme contigo en llamada cuando lo necesites.</li>
+                    <li>Respetar tus espacios y tus tiempos libres.</li>
+                    <li>Apoyar cada uno de tus sueños y metas.</li>
+                    <li>Serte fiel hoy, mañana y siempre.</li>
+                    <li>No dejar que nos durmamos enojados.</li>
+                    <li>Hacerte reír cuando estés triste.</li>
+                    <li>Contarte cómo fue mi día y querer saber del tuyo.</li>
+                    <li>Darte mi total confianza.</li>
+                    <li>Cuidar tu corazón como el tesoro más grande.</li>
+                    <li>Enviarte canciones que me recuerden a ti.</li>
+                    <li>Planear con emoción el día en que por fin nos abracemos.</li>
+                    <li>Celebrar cada mes a tu lado.</li>
+                    <li>No ocultarte mis sentimientos ni lo que me pasa.</li>
+                    <li>Mandarte memes que sé que te darán risa.</li>
+                    <li>Escribirte cartas digitales como esta.</li>
+                    <li>Ser tu mejor amigo y tu novio al mismo tiempo.</li>
+                    <li>Comer "juntos" por videollamada.</li>
+                    <li>Presumirte con orgullo ante el mundo.</li>
+                    <li>Tenerte paciencia en todo momento.</li>
+                    <li>Aprender a conocer tus estados de ánimo por texto.</li>
+                    <li>No dejar que la rutina apague nuestra chispa.</li>
+                    <li>Recordarte que la distancia es solo temporal.</li>
+                    <li>Hacer planes realistas para nuestro futuro juntos.</li>
+                    <li>Darte seguridad emocional siempre.</li>
+                    <li>Recordar las fechas importantes para los dos.</li>
+                    <li>Mandarte fotos de lo que estoy haciendo para incluirte en mi día.</li>
+                    <li>No juzgarte por tus errores o miedos.</li>
+                    <li>Estar en primera fila para tus logros.</li>
+                    <li>Hacerte sentir amada, nunca ignorada.</li>
+                    <li>Ser transparente contigo en todo.</li>
+                    <li>Cuidar mis palabras para nunca lastimarte.</li>
+                    <li>Recordarte que eres mi prioridad.</li>
+                    <li>Jugar videojuegos o dinámicas online contigo.</li>
+                    <li>Aceptarte exactamente tal y como eres.</li>
+                    <li>Dedicarte tiempo de calidad, no solo tiempo libre.</li>
+                    <li>Ayudarte a calmar tu ansiedad si estás estresada.</li>
+                    <li>Hacer una playlist juntos en Spotify.</li>
+                    <li>Aprender de las cosas que te gustan.</li>
+                    <li>Respetar tus amistades y tu entorno.</li>
+                    <li>Pedirte perdón cuando cometa un error.</li>
+                    <li>Perdonarte con amor si algo sale mal.</li>
+                    <li>Hablar de las cosas que nos incomodan antes de que sean un problema.</li>
+                    <li>Inundar tu WhatsApp de corazones cuando menos lo esperes.</li>
+                    <li>Ser tu refugio seguro cuando el mundo pese.</li>
+                    <li>Valorar cada pequeño detalle que tengas conmigo.</li>
+                    <li>Recordar cómo me haces sentir y devolvértelo multiplicado.</li>
+                    <li>No compararte con nadie, eres única para mí.</li>
+                    <li>Mantener vivo el romance aunque no nos toquemos las manos.</li>
+                    <li>Contarte mis secretos más profundos.</li>
+                    <li>Escuchar tu música favorita aunque no sea mi estilo.</li>
+                    <li>Avisarte cuando llegue bien a casa para que no te preocupes.</li>
+                    <li>Desearte éxito antes de cada examen o día de trabajo.</li>
+                    <li>Darte masajes virtuales cuando estés cansada.</li>
+                    <li>Hacerte saber que pienso en ti a mitad del día.</li>
+                    <li>Ser constante en mi amor por ti.</li>
+                    <li>No darte motivos para dudar de mí.</li>
+                    <li>Defender nuestra relación ante cualquier adversidad.</li>
+                    <li>No dejar que los celos sin sentido nos afecten.</li>
+                    <li>Crecer como persona para darte mi mejor versión.</li>
+                    <li>Acompañarte en tus momentos de silencio.</li>
+                    <li>Estar disponible para emergencias emocionales 24/7.</li>
+                    <li>Mandarte besos infinitos por notas de voz.</li>
+                    <li>Apreciar tu voz cada vez que te escucho.</li>
+                    <li>Hacer que las despedidas en videollamada sean menos dolorosas.</li>
+                    <li>Tener metas en común contigo.</li>
+                    <li>Contarte mis miedos para que me conozcas de verdad.</li>
+                    <li>Preguntarte "¿cómo estás?" y querer de verdad la respuesta honesta.</li>
+                    <li>Hacer capturas de pantalla de nuestras videollamadas bonitas.</li>
+                    <li>Cuidar de tu salud recordándote que comas o descanses.</li>
+                    <li>Dedicarte poemas o frases bonitas.</li>
+                    <li>Ser tu fan número uno en la vida.</li>
+                    <li>No cambiar mi trato lindo hacia ti con el tiempo.</li>
+                    <li>No dejar que terceros se metan en lo nuestro.</li>
+                    <li>Hacer de nuestro chat el lugar más feliz del mundo.</li>
+                    <li>Contar los días que faltan para vernos con ilusión.</li>
+                    <li>Ahorrar para nuestro primer encuentro físico.</li>
+                    <li>Darte abrazos virtuales tan fuertes que los sientas.</li>
+                    <li>Recordarte que eres el amor de mi vida.</li>
+                    <li>Hacer locuras bonitas por ti a la distancia.</li>
+                    <li>Respetar tu pasado y construir un hermoso presente.</li>
+                    <li>Tener detalles contigo sin que sea una fecha especial.</li>
+                    <li>Hacer que la espera valga la pena cada segundo.</li>
+                    <li>No esconder lo que siento por ti ante nadie.</li>
+                    <li>Apoyarte cuando sientas que no puedes más.</li>
+                    <li>Hacer videollamadas con temática (ej: cenar elegantes).</li>
+                    <li>Darte la razón cuando la tengas y dialogar cuando no.</li>
+                    <li>Ser el motivo de tus sonrisas más sinceras.</li>
+                    <li>Amar tus virtudes y abrazar tus imperfecciones.</li>
+                    <li>Recordar siempre este día en que te pedí ser mi novia.</li>
+                    <li>Darte la seguridad de que solo tú estás en mi mente.</li>
+                    <li>Cumplir cada una de estas promesas paso a paso.</li>
+                    <li>No rendirme nunca con lo nuestro, sin importar la distancia.</li>
+                    <li>Amarte incondicionalmente, Natalia, hoy y cada día de mi vida.</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function moverBotonNo() {
+            const btnNo = document.getElementById('btn-no');
+            const container = document.getElementById('actions');
+            
+            const maxX = container.clientWidth - btnNo.clientWidth;
+            const maxY = container.clientHeight - btnNo.clientHeight;
+
+            const randomX = Math.floor(Math.random() * maxX);
+            const randomY = Math.floor(Math.random() * (maxY + 40)) - 20; 
+
+            btnNo.style.left = randomX + 'px';
+            btnNo.style.top = randomY + 'px';
+        }
+
+        function aceptarPropuesta() {
+            // Ocultar los botones de decisión
+            document.getElementById('actions').style.display = 'none';
+            // Mostrar mensaje lindo de éxito
+            document.getElementById('success-text').style.display = 'block';
+            
+            // Lanzar ráfaga de corazones flotantes por la pantalla
+            for (let i = 0; i < 25; i++) {
+                setTimeout(crearCorazon, i * 100);
+            }
+        }
+
+        function crearCorazon() {
+            const corazon = document.createElement('div');
+            corazon.innerHTML = '❤️';
+            corazon.style.position = 'fixed';
+            corazon.style.left = Math.random() * 100 + 'vw';
+            corazon.style.top = '100vh';
+            corazon.style.fontSize = Math.random() * 15 + 15 + 'px';
+            corazon.style.animation = 'subir 2.5s linear forwards';
+            corazon.style.zIndex = '999';
+            document.body.appendChild(corazon);
+
+            // Eliminar el elemento una vez termine de subir
+            setTimeout(() => {
+                corazon.remove();
+            }, 2500);
+        }
+    </script>
+</body>
+</html>
